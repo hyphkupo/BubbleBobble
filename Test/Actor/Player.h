@@ -12,8 +12,6 @@ public:
 
 	virtual void Update(float deltaTime) override;
 
-	void SetGravity();
-
 private:
 	float speed = 5.0f;
 	//float yPosition = 0.0f;

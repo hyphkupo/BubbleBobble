@@ -26,7 +26,7 @@ public:
 	virtual void SetPosition(const Vector2& newPosition);
 	inline Vector2 Position() const;
 
-	inline bool IsAcive() const { return isActive && !isExpired; }
+	inline bool IsActive() const { return isActive && !isExpired; }
 	inline void SetActive(bool active) { isActive = active; }
 	inline void Destroy() { isExpired = true; }
 

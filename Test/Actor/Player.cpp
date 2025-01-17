@@ -44,6 +44,7 @@ void Player::Update(float deltaTime)
 	if (Engine::Get().GetKey(VK_SPACE) && (refLevel->IsOnGround || refLevel->IsOnWall))
 	{
 		Vector2 newPosition = position;
+		//newPosition.y -= speed * deltaTime;
 		newPosition.y -= 4;
 
 		if (newPosition.y < 0)
@@ -52,41 +53,21 @@ void Player::Update(float deltaTime)
 		}
 
 		SetPosition(newPosition);
-
-		refLevel->IsInAir = true;
+		refLevel->IsOnAir = true;
 	}
 
-	// 플레이어가 공중에 있으면
-	if (refLevel->IsInAir)
+	// 착지
+	if (refLevel->IsOnAir)
 	{
-		// 착지
-		SetGravity();
+		Vector2 newPosition = position;
+		newPosition.y += 3;
 
-		//Vector2 newPosition = position;
-		//newPosition.y += 3;
+		if (newPosition.y > Engine::Get().ScreenSize().y - width)
+		{
+			newPosition.y = Engine::Get().ScreenSize().y - width;
+		}
 
-		//if (newPosition.y > Engine::Get().ScreenSize().y - width)
-		//{
-		//	newPosition.y = Engine::Get().ScreenSize().y - width;
-		//}
-
-		//SetPosition(newPosition);
-
-		refLevel->IsInAir = false;
+		SetPosition(newPosition);
+		refLevel->IsOnAir = false;
 	}
-}
-
-void Player::SetGravity()
-{
-	Vector2 newPosition = position;
-
-	newPosition.y = 1;		// Ground 배열 중 가장 가까운 원소 위치
-	//newPosition.y += 3;
-
-	if (newPosition.y > Engine::Get().ScreenSize().y - width)
-	{
-		newPosition.y = Engine::Get().ScreenSize().y - width;
-	}
-
-	SetPosition(newPosition);
 }

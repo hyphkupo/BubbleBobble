@@ -34,12 +34,6 @@ private:
 	// 벽/땅 액터 배열.
 	List<DrawableActor*> map;
 
-	// 박스 액터.
-	List<Box*> boxes;
-
-	// 타겟 액터.
-	List<Target*> targets;
-
 	// 플레이어 액터.
 	Player* player = nullptr;
 

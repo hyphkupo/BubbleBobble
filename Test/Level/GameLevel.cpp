@@ -1,4 +1,6 @@
 #include "GameLevel.h"
+#include "GameLevel.h"
+#include "GameLevel.h"
 #include "Engine/Engine.h"
 #include "Actor/Player.h"
 #include "Actor/Wall.h"
@@ -77,7 +79,7 @@ GameLevel::GameLevel()
 			continue;
 		}
 
-		// 맵 문자가 1이면 Wall 액터 생성
+		// 맵 문자가 1이면 Wall 액터 생성.
 		if (mapChar == '1')
 		{
 			Wall* wall = new Wall(Vector2(xPosition, yPosition));
@@ -85,7 +87,7 @@ GameLevel::GameLevel()
 			map.PushBack(wall);
 		}
 
-		// 맵 문자가 0이면 그라운드 액터 생성
+		// 맵 문자가 .이면 그라운드 액터 생성.
 		else if (mapChar == '0')
 		{
 			Ground* ground = new Ground(Vector2(xPosition, yPosition));
@@ -97,13 +99,15 @@ GameLevel::GameLevel()
 	}
 
 	AddActor(new Player("o", this));
-	AddActor(new Enemy("x"));
-
 
 	// 버퍼 삭제.
 	delete[] buffer;
 
 	fclose(file);
+}
+
+GameLevel::~GameLevel()
+{
 }
 
 void GameLevel::Update(float deltaTime)
@@ -122,6 +126,18 @@ void GameLevel::Update(float deltaTime)
 		Engine::Get().QuitGame();
 	}
 
-	// Wall 또는 Ground가 아니면 IsInAir = true
-	
+	AddActor(new Enemy("x"));
+
+}
+
+bool GameLevel::CanPlayerMove(const Vector2& position)
+{
+	return false;
+}
+
+
+
+bool GameLevel::CheckGameClear()
+{
+	return false;
 }

@@ -2,7 +2,6 @@
 
 #include "Actor/DrawableActor.h"
 
-class GameLevel;
 class Enemy : public DrawableActor
 {
 	// 적 캐릭터가 이동할 방향.
@@ -20,14 +19,8 @@ public:
 
 	virtual void Update(float deltaTime) override;
 
-	//void Move();
-
-	void SetGravity();
-
 private:
 	Direction direction = Direction::None;
 	float xPosition = 0.0f;
-	float speed = 1.0f;
-
-	GameLevel* refLevel = nullptr;
+	float speed = 5.0f;
 };
