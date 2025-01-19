@@ -8,11 +8,11 @@ Level::Level()
 
 Level::~Level()
 {
-	//// 메모리 해제.
-	//for (Actor* actor : actors)
-	//{
-	//	delete actor;
-	//}
+	// 메모리 해제.
+	for (Actor* actor : actors)
+	{
+		delete actor;
+	}
 }
 
 void Level::AddActor(Actor* newActor)

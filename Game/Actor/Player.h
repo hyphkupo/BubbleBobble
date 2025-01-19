@@ -12,7 +12,7 @@ public:
 
 	virtual void Update(float deltaTime) override;
 
-	void SetGravity();
+	//void SetGravity();
 
 private:
 	float speed = 5.0f;

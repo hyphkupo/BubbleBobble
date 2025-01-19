@@ -74,7 +74,7 @@ protected:
 protected:
 
 	// 타겟 프레임 변수(초당 프레임).
-	float targetFrameRate = 60.0f;
+	float targetFrameRate = 30.0f;
 
 	// 한 프레임 시간 값(단위: 초).
 	float targetOneFrameTime = 0.0f;

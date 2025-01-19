@@ -6,8 +6,6 @@
 // 소코반 게임 레벨.
 class DrawableActor;
 class Player;
-class Box;
-class Target;
 class GameLevel : public Level
 {
 	RTTI_DECLARATIONS(GameLevel, Level)
@@ -17,20 +15,36 @@ public:
 
 	// 업데이트 함수.
 	virtual void Update(float deltaTime) override;
-
+	virtual void Draw() override;
 
 	// 플레이어가 이동이 가능한 지 확인하는 함수.
 	bool CanPlayerMove(const Vector2& position);
 
-	bool IsOnGround = false;
+	bool IsOnGround(const Vector2& position);
 	bool IsOnWall = true;
 	bool IsInAir = false;
 
+	List<int> GroundPosition;
+
+	bool isPlayerDead = false;
+
 private:
+	// 플레이어 탄약과 적의 충돌 처리.
+	void ProcessCollisionPlayerBulletAndEnemy();
+
+	// 적과 플레이어의 충돌 처리.
+	void ProcessCollisionPlayerAndEnemy();
+
+	// 적 생성 함수
+	void SpawnEnemy(float deltaTime);
+
 	// 박스를 옮긴 뒤 게임을 클리어했는지 확인하는 함수.
 	bool CheckGameClear();
 
 private:
+	// 점수.
+	int score = 0;
+
 	// 벽/땅 액터 배열.
 	List<DrawableActor*> map;
 
@@ -39,4 +53,6 @@ private:
 
 	// 게임 클리어 변수.
 	bool isGameClear = false;
+
+	Vector2 playerDeadPosition;
 };

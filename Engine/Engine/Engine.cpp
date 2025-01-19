@@ -29,7 +29,7 @@ BOOL WINAPI MessageProcessor(DWORD message)
 Engine* Engine::instance = nullptr;
 
 Engine::Engine()
-	: quit(false), mainLevel(nullptr), screenSize(32, 11)	// 40, 25
+	: quit(false), mainLevel(nullptr), screenSize(32, 13)	// 40, 25
 {
 	// 랜덤 시드 설정.
 	srand((unsigned int)time(nullptr));
@@ -38,7 +38,7 @@ Engine::Engine()
 	instance = this;
 
 	// 기본 타겟 프레임 속도 설정.
-	SetTargetFrameRate(60.0f);
+	SetTargetFrameRate(30.0f);
 
 	// 화면 버퍼 초기화.
 	// 1. 버퍼 크기 할당.
