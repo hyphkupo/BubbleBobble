@@ -1,7 +1,7 @@
 #include "Wall.h"
 
 Wall::Wall(const Vector2& position)
-	: DrawableActor("1")
+	: DrawableActor("/")
 {
 	this->position = position;
 

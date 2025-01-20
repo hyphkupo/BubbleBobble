@@ -16,18 +16,21 @@ class Enemy : public DrawableActor
 	RTTI_DECLARATIONS(Enemy, DrawableActor)
 
 public:
-	Enemy(const char* image);
+	Enemy(const char* image, int inputPositionY, GameLevel* level);
 
 	virtual void Update(float deltaTime) override;
 
-	//void Move();
+	virtual void SetPosition(const Vector2& newPosition) override;
 
-	void SetGravity();
+	bool inBubble = false;
 
 private:
 	Direction direction = Direction::None;
 	float xPosition = 0.0f;
-	float speed = 1.0f;
+	float yPosition = 0.0f;
 
+	float speed = 3.0f;
+	float factor = 0.0f;
+	
 	GameLevel* refLevel = nullptr;
 };

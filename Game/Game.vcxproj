@@ -181,6 +181,7 @@
   <ItemGroup>
     <ClCompile Include="Actor\Air.cpp" />
     <ClCompile Include="Actor\Enemy.cpp" />
+    <ClCompile Include="Actor\Enemy2.cpp" />
     <ClCompile Include="Actor\Ground.cpp" />
     <ClCompile Include="Actor\Player.cpp" />
     <ClCompile Include="Actor\PlayerBubble.cpp" />
@@ -193,6 +194,7 @@
   <ItemGroup>
     <ClInclude Include="Actor\Air.h" />
     <ClInclude Include="Actor\Enemy.h" />
+    <ClInclude Include="Actor\Enemy2.h" />
     <ClInclude Include="Actor\Ground.h" />
     <ClInclude Include="Actor\Player.h" />
     <ClInclude Include="Actor\PlayerBubble.h" />

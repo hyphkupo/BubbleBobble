@@ -216,3 +216,8 @@ inline void CheckMemoryLeak()
 #define VK_RCONTROL       0xA3
 #define VK_LMENU          0xA4
 #define VK_RMENU          0xA5
+
+#define VK_W		      0x57
+#define VK_A		      0x41
+#define VK_S		      0x53
+#define VK_D		      0x44

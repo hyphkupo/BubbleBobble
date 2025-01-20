@@ -76,3 +76,13 @@ bool DrawableActor::Intersect(const DrawableActor& other)
 	// 위의 두 경우가 아니라면 (x좌표는 서로 겹침), y위치 비교.
 	return position.y == other.position.y;
 }
+
+void DrawableActor::RedrawImage(const char* image)
+{
+	auto length = strlen(image) + 1;
+	this->image = new char[length];
+	strcpy_s(this->image, length, image);
+
+	// 너비 설정.
+	width = (int)strlen(image);
+}

@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Workspace\GameProject\BubbleBobble\Bin\x64\Debug\Engine\Engine.dll</FullPath>
+      <FullPath>C:\Workspace\GameProjects\BubbleBobble\BubbleBobble\Bin\x64\Debug\Engine\Engine.dll</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

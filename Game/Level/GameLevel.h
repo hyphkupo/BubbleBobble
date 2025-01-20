@@ -3,7 +3,6 @@
 #include <Level/Level.h>
 #include <Math/Vector2.h>
 
-// 소코반 게임 레벨.
 class DrawableActor;
 class Player;
 class GameLevel : public Level
@@ -24,13 +23,19 @@ public:
 	bool IsOnWall = true;
 	bool IsInAir = false;
 
-	List<int> GroundPosition;
+	//List<int> GroundPosition;
 
 	bool isPlayerDead = false;
 
+	// 플레이어의 버블 발사 방향 결정 변수
+	int flag = 0;
+
+	// 움직이는 버블 방향 고정용 변수
+	List<bool> BubbleDirection;
+
 private:
-	// 플레이어 탄약과 적의 충돌 처리.
-	void ProcessCollisionPlayerBulletAndEnemy();
+	// 플레이어 버블과 적의 충돌 처리.
+	void ProcessCollisionPlayerBubbleAndEnemy();
 
 	// 적과 플레이어의 충돌 처리.
 	void ProcessCollisionPlayerAndEnemy();
@@ -42,6 +47,10 @@ private:
 	bool CheckGameClear();
 
 private:
+	// enemy 위치 업데이트용 변수
+	int xPosition = 0;
+	int yPosition = 0;
+
 	// 점수.
 	int score = 0;
 

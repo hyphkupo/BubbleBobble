@@ -20,7 +20,8 @@ void MenuLevel::Update(float deltaTime)
 {
 	if (Game::Get().GetKeyDown(VK_ESCAPE))
 	{
-		Game::Get().ToggleMenu();
+		//Game::Get().ToggleMenu();
+		Engine::Get().QuitGame();
 	}
 
 	if (Game::Get().GetKeyDown(VK_UP))

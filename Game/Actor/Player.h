@@ -12,11 +12,12 @@ public:
 
 	virtual void Update(float deltaTime) override;
 
-	//void SetGravity();
+	int flag = 0;
+
+	//List<PlayerBubble*> shootBubble;
 
 private:
 	float speed = 5.0f;
-	//float yPosition = 0.0f;
 
 	GameLevel* refLevel = nullptr;
 };
