@@ -39,7 +39,7 @@ private:
 
 	// ¾À º¯¼ö.
 	Level* menuLevel = nullptr;
-	Level* mainLevel = nullptr;
+	//Level* mainLevel = nullptr;
 	Level* backLevel = nullptr;
 
 	// ½Ì±ÛÅæ ±¸Çö °´Ã¼.

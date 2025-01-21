@@ -54,9 +54,9 @@ void PlayerBubble::Update(float deltaTime)
 		return;
 	}
 
-	if (position.x > Engine::Get().ScreenSize().x - 1)
+	if (position.x > Engine::Get().ScreenSize().x - 2)
 	{
-		position.x = Engine::Get().ScreenSize().x - 1;
+		position.x = Engine::Get().ScreenSize().x - 2;
 		//refLevel->isBubbleMoving = false;
 		this->Destroy();
 		return;

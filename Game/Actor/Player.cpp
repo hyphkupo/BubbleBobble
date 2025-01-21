@@ -23,9 +23,9 @@ void Player::Update(float deltaTime)
 
 	if (Engine::Get().GetKeyDown(VK_ESCAPE))
 	{
-		Engine::Get().QuitGame();
+		//Engine::Get().QuitGame();
 		// 메뉴 토글
-		//Game::Get().ToggleMenu();
+		Game::Get().ToggleMenu();
 	}
 
 	if (Engine::Get().GetKey(VK_LEFT) || Engine::Get().GetKey(VK_A))

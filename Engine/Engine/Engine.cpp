@@ -195,6 +195,13 @@ void Engine::SetCursorType(CursorType cursorType)
 	GetRenderer()->SetCursorType(cursorType);
 }
 
+//void Engine::SetCursorPosition(int x, int y)
+//{
+//	static HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+//	COORD coord = { static_cast<short>(x), static_cast<short>(y) };
+//	SetConsoleCursorPosition(handle, coord);
+//}
+
 //void Engine::SetCursorPosition(const Vector2& position)
 //{
 //	SetCursorPosition(position.x, position.y);

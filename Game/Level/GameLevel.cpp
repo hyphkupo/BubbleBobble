@@ -120,7 +120,7 @@ void GameLevel::Update(float deltaTime)
 		return;
 	}
 
-	// ESC 키로 종료.
+	//// ESC 키로 종료.
 	//if (Engine::Get().GetKeyDown(VK_ESCAPE))
 	//{
 	//	Game::Get().ToggleMenu();
