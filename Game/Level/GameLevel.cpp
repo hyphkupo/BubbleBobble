@@ -1,12 +1,11 @@
 #include "GameLevel.h"
 #include "Engine/Engine.h"
-#include "Actor/Player.h"
 #include "Actor/Wall.h"
 #include "Actor/Ground.h"
 #include "Actor/Air.h"
 
+#include "Actor/Player.h"
 #include "Actor/Enemy.h"
-#include "Actor/Enemy2.h"
 #include "Actor/PlayerBubble.h"
 
 #include <Windows.h>
@@ -20,7 +19,30 @@ GameLevel::GameLevel()
 	// 맵 파일 불러와 레벨 로드.
 	// 파일 읽기.
 	FILE* file = nullptr;
-	fopen_s(&file, "../Assets/Maps/Map.txt", "rb");
+
+	//char* fileName = new char[26];
+	//int fileNumber = Random(1, 3);
+	//char* fileMiddleName = new char[2];
+	//if (fileNumber == 1)
+	//{
+	//	strcpy_s(fileMiddleName, strlen(fileMiddleName), "1");
+	//}
+
+	//else if (fileNumber == 2)
+	//{
+	//	strcpy_s(fileMiddleName, strlen(fileMiddleName), "2");
+	//}
+	//else
+	//{
+	//	strcpy_s(fileMiddleName, strlen(fileMiddleName), "3");
+	//}
+	//strcpy_s(fileName, strlen(fileName), "../Assets/Maps/Stage");
+	//strcpy_s(fileName, strlen(fileName), fileMiddleName);
+	//strcpy_s(fileName, strlen(fileName), ".txt");
+
+	//fopen_s(&file, fileName, "rb");
+
+	fopen_s(&file, "../Assets/Maps/Stage1.txt", "rb");
 
 	// 파일 처리.
 	if (file == nullptr)
@@ -101,8 +123,8 @@ GameLevel::GameLevel()
 	}
 
 	AddActor(new Player("p", this));
-	AddActor(new Enemy("x", 1, this));
 	AddActor(new Enemy("x", 4, this));
+	AddActor(new Enemy("x", 7, this));
 	//AddActor(new Enemy2("x", 4, this));
 
 	delete[] buffer;
@@ -169,6 +191,11 @@ void GameLevel::Draw()
 	Engine::Get().Draw(Vector2(0, Engine::Get().ScreenSize().y - 1), buffer);
 }
 
+int GameLevel::getFlag()
+{
+	return flag;
+}
+
 // 플레이어의 버블과 적 충돌 처리
 void GameLevel::ProcessCollisionPlayerBubbleAndEnemy()
 {
@@ -228,7 +255,8 @@ void GameLevel::ProcessCollisionPlayerBubbleAndEnemy()
 
 				if (enemy->inBubble)
 				{
-					enemy->RedrawImage("@");
+					enemy->RedrawImage("@", Color::Yellow);
+					
 				}
 
 				// 맵 범위를 벗어나면 적 제거
@@ -288,7 +316,7 @@ void GameLevel::ProcessCollisionPlayerAndEnemy()
 		if (player->Intersect(*enemy) && !enemy->inBubble)
 		{
 			isPlayerDead = true;
-			playerDeadPosition = Vector2(player->Position().x + player->Width() / 2, player->Position().y);
+			//playerDeadPosition = Vector2(player->Position().x + player->Width() / 2, player->Position().y);
 			player->Destroy();
 		}
 
@@ -303,8 +331,8 @@ void GameLevel::ProcessCollisionPlayerAndEnemy()
 
 void GameLevel::SpawnEnemy(float deltaTime)
 {
-	AddActor(new Enemy("x", 1, this));
 	AddActor(new Enemy("x", 4, this));
+	AddActor(new Enemy("x", 7, this));
 }
 
 bool GameLevel::CheckGameClear()
@@ -360,25 +388,25 @@ bool GameLevel::CanPlayerMove(const Vector2& position)
 	return true;
 }
 
-bool GameLevel::IsOnGround(const Vector2& position)
-{
-	// 이동하려는 위치에 벽이 있는지 확인.
-	Actor* searchedActor = nullptr;
-
-	// 먼저 이동하려는 위치의 액터 찾기.
-	for (auto* actor : actors)
-	{
-		if (actor->Position() == position)
-		{
-			searchedActor = actor;
-			break;
-		}
-	}
-
-	if (searchedActor->As<Ground>())
-	{
-		return true;
-	}
-
-	return false;
-}
+//bool GameLevel::IsOnGround(const Vector2& position)
+//{
+//	// 이동하려는 위치에 벽이 있는지 확인.
+//	Actor* searchedActor = nullptr;
+//
+//	// 먼저 이동하려는 위치의 액터 찾기.
+//	for (auto* actor : actors)
+//	{
+//		if (actor->Position() == position)
+//		{
+//			searchedActor = actor;
+//			break;
+//		}
+//	}
+//
+//	if (searchedActor->As<Ground>())
+//	{
+//		return true;
+//	}
+//
+//	return false;
+//}

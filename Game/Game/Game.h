@@ -31,7 +31,7 @@ public:
 		// 함수 안에서 생성하는 패턴이어서 우리가 따로 찾아가서 지워줘야 함 ...
 
 		return *instance;
-	}
+	};
 
 private:
 	// 메뉴를 보여주고 있는지를 나타내는 변수.
@@ -39,7 +39,7 @@ private:
 
 	// 씬 변수.
 	Level* menuLevel = nullptr;
-	Level* mainLevel;
+	Level* mainLevel = nullptr;
 	Level* backLevel = nullptr;
 
 	// 싱글톤 구현 객체.

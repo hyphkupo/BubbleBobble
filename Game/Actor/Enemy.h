@@ -33,4 +33,8 @@ private:
 	float factor = 0.0f;
 	
 	GameLevel* refLevel = nullptr;
+
+	void MoveEnemy(float deltaTime);
+
+	void MoveInBubble(float deltaTime);
 };

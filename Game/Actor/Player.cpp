@@ -6,10 +6,15 @@
 #include "Actor/PlayerBubble.h"
 
 Player::Player(const char* image, GameLevel* level)
-	: Super(image), refLevel(level)
+	: DrawableActor("P"), refLevel(level)
 {
+	color = Color::MoreGreen;
+
 	// 플레이어 시작 위치
-	position = Vector2(Engine::Get().ScreenSize().x/2 - 1, Engine::Get().ScreenSize().y - 6);
+	position = Vector2(Engine::Get().ScreenSize().x/2 - 1, Engine::Get().ScreenSize().y - 12);
+
+	xPosition = position.x;
+	yPosition = position.y;
 }
 
 void Player::Update(float deltaTime)
@@ -27,7 +32,9 @@ void Player::Update(float deltaTime)
 	{
 		if (refLevel->CanPlayerMove(Vector2(position.x - 1, position.y)))
 		{
-			--position.x;
+			//--position.x;
+			xPosition -= speed * 3 * deltaTime;
+			position.x = (int)xPosition;
 
 			if (position.x < 0)
 			{
@@ -47,7 +54,9 @@ void Player::Update(float deltaTime)
 	{
 		if (refLevel->CanPlayerMove(Vector2(position.x + 1, position.y)))
 		{
-			++position.x;
+			//++position.x;
+			xPosition += speed * 3 * deltaTime;
+			position.x = (int)xPosition;
 
 			if (position.x > Engine::Get().ScreenSize().x - width)
 			{
@@ -62,7 +71,9 @@ void Player::Update(float deltaTime)
 	{
 		if (refLevel->CanPlayerMove(Vector2(position.x, position.y - 1)))
 		{
-			--position.y;
+			//--position.y;
+			yPosition -= speed * 2 * deltaTime;
+			position.y = (int)yPosition;
 
 			if (position.y < 1)
 			{
@@ -77,7 +88,9 @@ void Player::Update(float deltaTime)
 	{
 		if (refLevel->CanPlayerMove(Vector2(position.x, position.y + 1)))
 		{
-			++position.y;
+			//++position.y;
+			yPosition += speed * 2 * deltaTime;
+			position.y = (int)yPosition;
 
 			if (position.y > 10)
 			{

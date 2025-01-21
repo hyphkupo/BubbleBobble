@@ -14,9 +14,9 @@ public:
 
 	int flag = 0;
 
-	//List<PlayerBubble*> shootBubble;
-
 private:
+	float xPosition = 0.0f;
+	float yPosition = 0.0f;
 	float speed = 5.0f;
 
 	GameLevel* refLevel = nullptr;

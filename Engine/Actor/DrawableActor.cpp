@@ -77,7 +77,8 @@ bool DrawableActor::Intersect(const DrawableActor& other)
 	return position.y == other.position.y;
 }
 
-void DrawableActor::RedrawImage(const char* image)
+// DrawableActor의 image를 바꿔주는 함수 (ex. 버블과 충돌 시의 enemy "a" -> "@")
+void DrawableActor::RedrawImage(const char* image, Color color)
 {
 	auto length = strlen(image) + 1;
 	this->image = new char[length];
@@ -85,4 +86,6 @@ void DrawableActor::RedrawImage(const char* image)
 
 	// 너비 설정.
 	width = (int)strlen(image);
+
+	this->color = color;
 }

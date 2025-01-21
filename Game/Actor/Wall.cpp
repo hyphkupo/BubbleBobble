@@ -5,5 +5,5 @@ Wall::Wall(const Vector2& position)
 {
 	this->position = position;
 
-	color = Color::Blue;
+	color = Color::MoreBlue;
 }

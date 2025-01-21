@@ -13,6 +13,8 @@ public:
 
 	virtual void Update(float deltaTime) override;
 
+	int bubbleDirection = 0;
+
 private:
 	// 이동 관련 변수.
 	// 이동 속력 (단위: 칸/초).

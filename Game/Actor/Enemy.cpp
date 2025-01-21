@@ -3,6 +3,7 @@
 #include "Math/Vector2.h"
 #include "Level/GameLevel.h"
 #include "Actor/DrawableActor.h"
+#include "Engine/Timer.h"
 
 Enemy::Enemy(const char* image, int inputPositionY, GameLevel* level)
 	: DrawableActor("a"), refLevel(level)
@@ -13,7 +14,7 @@ Enemy::Enemy(const char* image, int inputPositionY, GameLevel* level)
 
 	int random = Random(1, 10);
 	random %= 2;
-
+	
 	if (random)
 	{
 		direction = Direction::Left;
@@ -26,41 +27,60 @@ Enemy::Enemy(const char* image, int inputPositionY, GameLevel* level)
 	}
 
 	factor = direction == Direction::Left ? -1.0f : 1.0f;
+	yPosition = (float)position.y;
 }
 
 void Enemy::Update(float deltaTime)
 {
 	Super::Update(deltaTime);
 
-	// 좌우 이동
-	xPosition += speed * factor * deltaTime;
-	position.x = (int)xPosition;
-
-	// 범위 밖 벗어나면 반대 방향으로 이동
-	if (position.x < 9.0f || position.x > 22.0f)
-	{
-		factor *= (-1);
-		xPosition += speed * factor * deltaTime;
-		position.x = (int)xPosition;
-	}
-
-	// 버블 y--
+	// 적이 버블을 맞은 상태라면 적 --y
 	if (inBubble)
 	{
-		yPosition = position.y;
-		yPosition -= speed / 100 * deltaTime;
-		position.y = (int)yPosition;
-		if (position.y < 1)
-		{
-			Destroy();
-			return;
-		}
+		MoveInBubble(deltaTime);
+	}
+
+	// 적이 버블을 맞지 않은 상태
+	else
+	{
+		MoveEnemy(deltaTime);
 	}
 }
 
 void Enemy::SetPosition(const Vector2& newPosition)
 {
 	Super::SetPosition(newPosition);
+}
+
+void Enemy::MoveEnemy(float deltaTime)
+{
+	// 좌우 이동
+	xPosition += speed * factor * deltaTime;
+	position.x = (int)xPosition;
+
+	// 범위 벗어나면 반대 방향으로 이동
+	if (position.x < 9.0f || position.x > 22.0f)
+	{
+		factor *= (-1.0f);
+		xPosition += speed * factor * deltaTime;
+		position.x = (int)xPosition;
+	}
+}
+
+// 적이 버블을 맞은 상태라면 적 --y
+void Enemy::MoveInBubble(float deltaTime)
+{
+	//xPosition += Random(-2, 2) * speed / 2 * deltaTime;
+	//position.x = (int)xPosition;
+
+	yPosition -= speed / 2 * deltaTime;
+	position.y = (int)yPosition;
+
+	if (position.y < 1)
+	{
+		Destroy();
+		return;
+	}
 }
 
 //void Enemy::SetGravity()

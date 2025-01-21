@@ -21,10 +21,9 @@ public:
 	// Getter.
 	inline int Width() const { return width; }
 
-	void RedrawImage(const char* image = "");
+	void RedrawImage(const char* image = "", Color color = Color::White);
 
 protected:
-
 	// 화면에 그릴 문자 값.
 	char* image;
 
@@ -33,6 +32,4 @@ protected:
 
 	// 색상 값.
 	Color color = Color::White;
-
-	//int flag = 0;
 };

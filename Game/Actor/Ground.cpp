@@ -5,5 +5,5 @@ Ground::Ground(const Vector2& position)
 {
 	this->position = position;
 
-	color = Color::Green;
+	color = Color::Purple;
 }
