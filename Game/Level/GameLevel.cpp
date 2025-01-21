@@ -167,6 +167,11 @@ void GameLevel::Draw()
 	Engine::Get().Draw(Vector2(0, Engine::Get().ScreenSize().y - 1), buffer);
 }
 
+void GameLevel::LoadStage()
+{
+
+}
+
 // 플레이어의 버블과 적 충돌 처리
 void GameLevel::ProcessCollisionPlayerBubbleAndEnemy()
 {

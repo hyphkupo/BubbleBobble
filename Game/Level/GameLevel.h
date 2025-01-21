@@ -28,6 +28,9 @@ public:
 	bool isPlayerDead = false;
 
 private:
+	// 스테이지 파일 로드 함수
+	void LoadStage();
+
 	// 플레이어 버블과 적의 충돌 처리.
 	void ProcessCollisionPlayerBubbleAndEnemy();
 
