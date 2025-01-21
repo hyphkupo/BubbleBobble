@@ -47,7 +47,7 @@ void Player::Update(float deltaTime)
 		//	refLevel->flag = 0;
 		//}
 
-		refLevel->flag = 0;
+		flag = 0;
 	}
 
 	if (Engine::Get().GetKey(VK_RIGHT) || Engine::Get().GetKey(VK_D))
@@ -64,7 +64,7 @@ void Player::Update(float deltaTime)
 			}
 		}
 
-		refLevel->flag = 1;
+		flag = 1;
 	}
 
 	if (Engine::Get().GetKey(VK_UP) || Engine::Get().GetKey(VK_W))
@@ -81,7 +81,7 @@ void Player::Update(float deltaTime)
 			}
 		}
 
-		refLevel->flag = 2;
+		flag = 2;
 	}
 
 	if (Engine::Get().GetKey(VK_DOWN) || Engine::Get().GetKey(VK_S))
@@ -98,13 +98,13 @@ void Player::Update(float deltaTime)
 			}
 		}
 
-		refLevel->flag = 3;
+		flag = 3;
 	}
 
 	if (Engine::Get().GetKeyDown(VK_SPACE))
 	{
 		Vector2 bubblePosition(position.x + (width / 2), position.y);
 
-		Engine::Get().AddActor(new PlayerBubble(bubblePosition, refLevel));
+		Engine::Get().AddActor(new PlayerBubble(bubblePosition, flag));
 	}
 }

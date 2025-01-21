@@ -12,6 +12,7 @@ public:
 
 	virtual void Update(float deltaTime) override;
 
+	// 플레이어의 버블 발사 방향 결정 변수
 	int flag = 0;
 
 private:

@@ -3,8 +3,8 @@
 #include "Level/GameLevel.h"
 #include <cmath>
 
-PlayerBubble::PlayerBubble(const Vector2& position, GameLevel* level)
-	: DrawableActor("o"), refLevel(level)
+PlayerBubble::PlayerBubble(const Vector2& position, int flag)
+	: DrawableActor("o")
 {
 	color = Color::Yellow;
 
@@ -13,32 +13,33 @@ PlayerBubble::PlayerBubble(const Vector2& position, GameLevel* level)
 	xPosition = (float)position.x;
 	yPosition = (float)position.y;
 
-	//int bubbleDirection = 
+	bubbleDirection = flag;
 }
 
 void PlayerBubble::Update(float deltaTime)
 {
 	Super::Update(deltaTime);
 
-	if (refLevel->flag == 0)		// LEFT
+	// 버블 방향 처리
+	if (bubbleDirection == 0)		// LEFT
 	{
 		xPosition -= speed * deltaTime;
 		position.x = (int)xPosition;
 	}
 
-	else if (refLevel->flag == 1)	// RIGHT
+	else if (bubbleDirection == 1)	// RIGHT
 	{
 		xPosition += speed * deltaTime;
 		position.x = (int)xPosition;
 	}
 
-	else if (refLevel->flag == 2)	// UP
+	else if (bubbleDirection == 2)	// UP
 	{
 		yPosition -= speed / 2 * deltaTime;
 		position.y = (int)yPosition;
 	}
 
-	else if (refLevel->flag == 3)	// DOWN
+	else if (bubbleDirection == 3)	// DOWN
 	{
 		yPosition += speed / 2 * deltaTime;
 		position.y = (int)yPosition;

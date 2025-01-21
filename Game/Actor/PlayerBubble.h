@@ -9,11 +9,9 @@ class PlayerBubble : public DrawableActor
 
 public:
 	// 탄약은 생성할 때 위치를 전달 받아야 함.
-	PlayerBubble(const Vector2& position, GameLevel* level);
+	PlayerBubble(const Vector2& position, int flag);
 
 	virtual void Update(float deltaTime) override;
-
-	int bubbleDirection = 0;
 
 private:
 	// 이동 관련 변수.
@@ -23,5 +21,6 @@ private:
 	float xPosition = 0.0f;
 	float yPosition = 0.0f;
 
-	GameLevel* refLevel = nullptr;
+	// 플레이어의 버블 발사 방향 결정 값을 받아오는 변수
+	int bubbleDirection = 0;
 };

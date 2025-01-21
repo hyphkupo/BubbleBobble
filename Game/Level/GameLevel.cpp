@@ -20,28 +20,6 @@ GameLevel::GameLevel()
 	// 파일 읽기.
 	FILE* file = nullptr;
 
-	//char* fileName = new char[26];
-	//int fileNumber = Random(1, 3);
-	//char* fileMiddleName = new char[2];
-	//if (fileNumber == 1)
-	//{
-	//	strcpy_s(fileMiddleName, strlen(fileMiddleName), "1");
-	//}
-
-	//else if (fileNumber == 2)
-	//{
-	//	strcpy_s(fileMiddleName, strlen(fileMiddleName), "2");
-	//}
-	//else
-	//{
-	//	strcpy_s(fileMiddleName, strlen(fileMiddleName), "3");
-	//}
-	//strcpy_s(fileName, strlen(fileName), "../Assets/Maps/Stage");
-	//strcpy_s(fileName, strlen(fileName), fileMiddleName);
-	//strcpy_s(fileName, strlen(fileName), ".txt");
-
-	//fopen_s(&file, fileName, "rb");
-
 	fopen_s(&file, "../Assets/Maps/Stage1.txt", "rb");
 
 	// 파일 처리.
@@ -150,8 +128,6 @@ void GameLevel::Update(float deltaTime)
 
 	// Wall 또는 Ground가 아니면 IsInAir = true
 
-	//SpawnEnemy(deltaTime);
-
 	// 플레이어 버블과 적의 충돌 처리.
 	ProcessCollisionPlayerBubbleAndEnemy();
 
@@ -189,11 +165,6 @@ void GameLevel::Draw()
 	char buffer[256];
 	snprintf(buffer, 256, "Score: %d", score);
 	Engine::Get().Draw(Vector2(0, Engine::Get().ScreenSize().y - 1), buffer);
-}
-
-int GameLevel::getFlag()
-{
-	return flag;
 }
 
 // 플레이어의 버블과 적 충돌 처리
@@ -329,11 +300,11 @@ void GameLevel::ProcessCollisionPlayerAndEnemy()
 	}
 }
 
-void GameLevel::SpawnEnemy(float deltaTime)
-{
-	AddActor(new Enemy("x", 4, this));
-	AddActor(new Enemy("x", 7, this));
-}
+//void GameLevel::SpawnEnemy(float deltaTime)
+//{
+//	AddActor(new Enemy("x", 4, this));
+//	AddActor(new Enemy("x", 7, this));
+//}
 
 bool GameLevel::CheckGameClear()
 {

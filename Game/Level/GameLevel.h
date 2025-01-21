@@ -27,11 +27,6 @@ public:
 
 	bool isPlayerDead = false;
 
-	// 플레이어의 버블 발사 방향 결정 변수
-	int flag = 0;
-
-	int getFlag();
-
 private:
 	// 플레이어 버블과 적의 충돌 처리.
 	void ProcessCollisionPlayerBubbleAndEnemy();
@@ -40,7 +35,7 @@ private:
 	void ProcessCollisionPlayerAndEnemy();
 
 	// 적 생성 함수
-	void SpawnEnemy(float deltaTime);
+	//void SpawnEnemy(float deltaTime);
 
 	// 게임을 클리어했는지 확인하는 함수
 	bool CheckGameClear();
