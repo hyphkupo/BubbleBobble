@@ -28,12 +28,6 @@ void GameLevel::Update(float deltaTime)
 		return;
 	}
 
-	//// ESC 키로 종료.
-	//if (Engine::Get().GetKeyDown(VK_ESCAPE))
-	//{
-	//	Game::Get().ToggleMenu();
-	//}
-
 	// 플레이어 버블과 적의 충돌 처리.
 	ProcessCollisionPlayerBubbleAndEnemy();
 
