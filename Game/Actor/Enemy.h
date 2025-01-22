@@ -16,7 +16,7 @@ class Enemy : public DrawableActor
 	RTTI_DECLARATIONS(Enemy, DrawableActor)
 
 public:
-	Enemy(const char* image, int inputPositionY, GameLevel* level);
+	Enemy(const char* image, int x, int y, int inputPositionY, GameLevel* level);
 
 	virtual void Update(float deltaTime) override;
 
@@ -25,6 +25,9 @@ public:
 	bool inBubble = false;
 
 private:
+	int minX;
+	int maxX;
+
 	Direction direction = Direction::None;
 	float xPosition = 0.0f;
 	float yPosition = 0.0f;

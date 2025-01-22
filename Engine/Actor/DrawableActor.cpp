@@ -81,7 +81,6 @@ bool DrawableActor::Intersect(const DrawableActor& other)
 void DrawableActor::RedrawImage(const char* image, Color color)
 {
 	auto length = strlen(image) + 1;
-	this->image = new char[length];
 	strcpy_s(this->image, length, image);
 
 	// 너비 설정.

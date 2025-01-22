@@ -57,11 +57,12 @@ public:
 	// 싱글톤 객체 접근 함수.
 	static Engine& Get();
 
+	void Clear();						// 화면 지우기.
+
 protected:
 	void ProcessInput();				// 입력 처리.
 	void Update(float deltaTime);		// Tick();
 
-	void Clear();						// 화면 지우기.
 	void Draw();						// Render();
 	void Present();
 

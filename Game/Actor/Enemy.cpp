@@ -5,12 +5,34 @@
 #include "Actor/DrawableActor.h"
 #include "Engine/Timer.h"
 
-Enemy::Enemy(const char* image, int inputPositionY, GameLevel* level)
-	: DrawableActor("a"), refLevel(level)
+Enemy::Enemy(const char* image, int x, int y, int inputPositionY, GameLevel* level)
+	: DrawableActor("a"), minX(x), maxX(y), refLevel(level)
 {
-	// 적 시작 위치
-	xPosition = Random(10, 21);
-	position = Vector2(xPosition, inputPositionY);
+	if (refLevel->stageNumber == 1)
+	{
+		// 적 시작 위치
+		xPosition = Random(minX, maxX);
+		position = Vector2(xPosition, inputPositionY);
+		yPosition = (float)position.y;
+	}
+
+	else if (refLevel->stageNumber == 2)
+	{
+		// 적 시작 위치
+		xPosition = Random(minX, maxX);
+		position = Vector2(xPosition, inputPositionY);
+		yPosition = (float)position.y;
+	}
+
+	else if (refLevel->stageNumber == 3)
+	{
+		// 적 시작 위치
+		speed = 10.0f;
+		RedrawImage("*", Color::White);
+		yPosition = Random(minX, maxX);
+		position = Vector2(inputPositionY, yPosition);
+		xPosition = (float)position.x;
+	}
 
 	int random = Random(1, 10);
 	random %= 2;
@@ -18,16 +40,14 @@ Enemy::Enemy(const char* image, int inputPositionY, GameLevel* level)
 	if (random)
 	{
 		direction = Direction::Left;
-		//xPosition = 21.0f;
 	}
+
 	else
 	{
 		direction = Direction::Right;
-		//xPosition = 10.0f;
 	}
 
 	factor = direction == Direction::Left ? -1.0f : 1.0f;
-	yPosition = (float)position.y;
 }
 
 void Enemy::Update(float deltaTime)
@@ -54,40 +74,47 @@ void Enemy::SetPosition(const Vector2& newPosition)
 
 void Enemy::MoveEnemy(float deltaTime)
 {
-	// 좌우 이동
-	xPosition += speed * factor * deltaTime;
-	position.x = (int)xPosition;
-
-	// 범위 벗어나면 반대 방향으로 이동
-	if (position.x < 9.0f || position.x > 22.0f)
+	// Stage3
+	if (refLevel->stageNumber == 4)
 	{
-		factor *= (-1.0f);
+		// 상하 이동
+		yPosition += 10.0f * factor * deltaTime;
+		position.y = (int)yPosition;
+
+		// 범위 벗어나면 반대 방향으로 이동
+		if (position.y < minX || position.y > maxX)
+		{
+			factor *= (-1.0f);
+			yPosition += speed * factor * deltaTime;
+			position.y = (int)yPosition;
+		}
+	}
+	
+	else
+	{
+		// 좌우 이동
 		xPosition += speed * factor * deltaTime;
 		position.x = (int)xPosition;
+
+		// 범위 벗어나면 반대 방향으로 이동
+		if (position.x < minX || position.x > maxX)
+		{
+			factor *= (-1.0f);
+			xPosition += speed * factor * deltaTime;
+			position.x = (int)xPosition;
+		}
 	}
 }
 
 // 적이 버블을 맞은 상태라면 적 --y
 void Enemy::MoveInBubble(float deltaTime)
 {
-	//xPosition += Random(-2, 2) * speed / 2 * deltaTime;
-	//position.x = (int)xPosition;
-
 	yPosition -= speed / 2 * deltaTime;
 	position.y = (int)yPosition;
 
-	if (position.y < 1)
+	if (position.y < 0)
 	{
 		Destroy();
 		return;
 	}
 }
-
-//void Enemy::SetGravity()
-//{
-//	Vector2 newPosition = position;
-//	if (refLevel->IsInAir)
-//	{
-//		newPosition.y = 3;		// Ground 배열 중 가장 가까운 원소 위치
-//	}
-//}

@@ -6,6 +6,7 @@
 
 // 전방 선언(Forward Declaration).
 class Actor;
+class DrawableActor;
 class ENGINE_API Level : public RTTI
 {
 	// RTTI 정의.

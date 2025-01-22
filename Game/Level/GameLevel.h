@@ -5,6 +5,8 @@
 
 class DrawableActor;
 class Player;
+class Enemy;
+class Boss;
 class GameLevel : public Level
 {
 	RTTI_DECLARATIONS(GameLevel, Level)
@@ -16,20 +18,18 @@ public:
 	virtual void Update(float deltaTime) override;
 	virtual void Draw() override;
 
+	bool isGround(const Vector2& position);
+
 	// 플레이어가 이동이 가능한 지 확인하는 함수.
 	bool CanPlayerMove(const Vector2& position);
 
-	//bool IsOnGround(const Vector2& position);
-	//bool IsOnWall = true;
-	//bool IsInAir = false;
-
-	//List<int> GroundPosition;
-
 	bool isPlayerDead = false;
+
+	int stageNumber = 3;
 
 private:
 	// 스테이지 파일 로드 함수
-	void LoadStage();
+	void LoadNextStage();
 
 	// 플레이어 버블과 적의 충돌 처리.
 	void ProcessCollisionPlayerBubbleAndEnemy();
@@ -37,24 +37,25 @@ private:
 	// 적과 플레이어의 충돌 처리.
 	void ProcessCollisionPlayerAndEnemy();
 
-	// 적 생성 함수
-	//void SpawnEnemy(float deltaTime);
-
 	// 게임을 클리어했는지 확인하는 함수
 	bool CheckGameClear();
 
 private:
-	// 점수
-	int score = 0;
-
 	// 벽/땅 액터 배열
 	List<DrawableActor*> map;
+
+	// 점수
+	int score = 0;
 
 	// 플레이어 액터
 	Player* player = nullptr;
 
 	// 게임 클리어 변수
 	bool isGameClear = false;
+	int gameClearNumber = 0;
 
-	//Vector2 playerDeadPosition;
+	Player* p = nullptr;
+	Enemy* e1 = nullptr;
+	Enemy* e2 = nullptr;
+	Enemy* e3 = nullptr;
 };

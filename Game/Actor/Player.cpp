@@ -10,9 +10,24 @@ Player::Player(const char* image, GameLevel* level)
 {
 	color = Color::MoreGreen;
 
-	// 플레이어 시작 위치
-	position = Vector2(Engine::Get().ScreenSize().x/2 - 1, Engine::Get().ScreenSize().y - 12);
+	if (refLevel->stageNumber == 1)
+	{
+		// 플레이어 시작 위치
+		position = Vector2(Engine::Get().ScreenSize().x / 2 - 1, Engine::Get().ScreenSize().y - 12);
+	}
 
+	else if (refLevel->stageNumber == 2)
+	{
+		// 플레이어 시작 위치
+		position = Vector2(Engine::Get().ScreenSize().x / 2 - 1, Engine::Get().ScreenSize().y - 4);
+	}
+
+	else if (refLevel->stageNumber == 3)
+	{
+		// 플레이어 시작 위치
+		position = Vector2(Engine::Get().ScreenSize().x / 2 - 1, Engine::Get().ScreenSize().y - 12);
+	}
+	
 	xPosition = position.x;
 	yPosition = position.y;
 }
@@ -23,9 +38,9 @@ void Player::Update(float deltaTime)
 
 	if (Engine::Get().GetKeyDown(VK_ESCAPE))
 	{
-		//Engine::Get().QuitGame();
+		Engine::Get().QuitGame();
 		// 메뉴 토글
-		Game::Get().ToggleMenu();
+		//Game::Get().ToggleMenu();
 	}
 
 	if (Engine::Get().GetKey(VK_LEFT) || Engine::Get().GetKey(VK_A))
@@ -105,6 +120,6 @@ void Player::Update(float deltaTime)
 	{
 		Vector2 bubblePosition(position.x + (width / 2), position.y);
 
-		Engine::Get().AddActor(new PlayerBubble(bubblePosition, flag));
+		Engine::Get().AddActor(new PlayerBubble(bubblePosition, flag, refLevel));
 	}
 }

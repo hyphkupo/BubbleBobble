@@ -3,8 +3,8 @@
 #include "Level/GameLevel.h"
 #include <cmath>
 
-PlayerBubble::PlayerBubble(const Vector2& position, int flag)
-	: DrawableActor("o")
+PlayerBubble::PlayerBubble(const Vector2& position, int flag, GameLevel* level)
+	: DrawableActor("o"), refLevel(level)
 {
 	color = Color::Yellow;
 
@@ -49,7 +49,6 @@ void PlayerBubble::Update(float deltaTime)
 	if (xPosition < 1.0f)
 	{
 		xPosition = 1.0f;
-		//refLevel->isBubbleMoving = false;
 		this->Destroy();
 		return;
 	}
@@ -57,7 +56,6 @@ void PlayerBubble::Update(float deltaTime)
 	if (position.x > Engine::Get().ScreenSize().x - 2)
 	{
 		position.x = Engine::Get().ScreenSize().x - 2;
-		//refLevel->isBubbleMoving = false;
 		this->Destroy();
 		return;
 	}
@@ -65,7 +63,6 @@ void PlayerBubble::Update(float deltaTime)
 	if (yPosition < 1.0f)
 	{
 		yPosition = 1.0f;
-		//refLevel->isBubbleMoving = false;
 		this->Destroy();
 		return;
 	}
@@ -73,19 +70,14 @@ void PlayerBubble::Update(float deltaTime)
 	if (yPosition > 10.0f)
 	{
 		yPosition = 10.0f;
-		//refLevel->isBubbleMoving = false;
 		this->Destroy();
 		return;
 	}
 
 	// Ground에 버블이 부딪히면 destroy
-	if (position.y == 2 || position.y == 5 || position.y == 8)
+	if (refLevel->isGround(position))
 	{
-		if ((1 <= position.x && position.x <= 4) || (9 <= position.x && position.x <= 22) || (27 <= position.x && position.x <= 30))
-		{
-			this->Destroy();
-			//refLevel->isBubbleMoving = false;
-			return;
-		}
+		this->Destroy();
+		return;
 	}
 }
