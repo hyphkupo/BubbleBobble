@@ -3,7 +3,6 @@
 #include "Math/Vector2.h"
 #include "Level/GameLevel.h"
 #include "Actor/DrawableActor.h"
-#include "Engine/Timer.h"
 
 Enemy::Enemy(const char* image, int x, int y, int inputPositionY, GameLevel* level)
 	: DrawableActor("a"), minX(x), maxX(y), refLevel(level)

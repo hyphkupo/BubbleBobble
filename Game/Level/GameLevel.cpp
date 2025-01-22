@@ -1,6 +1,7 @@
 #include "GameLevel.h"
 #include "Engine/Engine.h"
 #include "Level/Level.h"
+
 #include "Actor/Wall.h"
 #include "Actor/Ground.h"
 #include "Actor/Air.h"
@@ -11,10 +12,6 @@
 
 #include <Windows.h>
 #include "Game/Game.h"
-
-#include "Container/List.h"
-
-//List<DrawableActor*> map;
 
 GameLevel::GameLevel()
 {
@@ -265,22 +262,22 @@ void GameLevel::LoadNextStage()
 // 플레이어의 버블과 적 충돌 처리
 void GameLevel::ProcessCollisionPlayerBubbleAndEnemy()
 {
-	// 버블 및 적 캐릭터 배열 선언.
+	// 버블 및 적 캐릭터 배열 선언
 	List<PlayerBubble*> bubbles;
 	List<Enemy*> enemies;
 	Player* player = nullptr;
 
-	// 레벨에 배치된 액터를 순회하면서 리스트 채우기.
+	// 레벨에 배치된 액터를 순회하면서 리스트 채우기
 	for (Actor* actor : actors)
 	{
-		// 플레이어가 설정되지 않았으면 플레이어로 형변환.
+		// 플레이어가 설정되지 않았으면 플레이어로 형변환
 		if (!player)
 		{
 			player = actor->As<Player>();
 			continue;
 		}
 
-		// 형변환 후 확인해서 리스트 채우기.
+		// 형변환 후 확인해서 리스트 채우기
 		PlayerBubble* bubble = actor->As<PlayerBubble>();
 		if (bubble)
 		{
@@ -288,7 +285,7 @@ void GameLevel::ProcessCollisionPlayerBubbleAndEnemy()
 			continue;
 		}
 
-		// 적으로 형변환 후 확인해서 리스트 채우기.
+		// 적으로 형변환 후 확인해서 리스트 채우기
 		Enemy* enemy = actor->As<Enemy>();
 		if (enemy)
 		{
@@ -296,27 +293,26 @@ void GameLevel::ProcessCollisionPlayerBubbleAndEnemy()
 		}
 	}
 
-	// 예외 처리.
+	// 예외 처리
 	if (bubbles.Size() == 0 || enemies.Size() == 0)
 	{
 		return;
 	}
 
-	// 두 배열을 순회하면서 충돌 처리.
+	// 두 배열을 순회하면서 충돌 처리
 	for (PlayerBubble* bubble : bubbles)
 	{
 		for (Enemy* enemy : enemies)
 		{
-			// 적이 비활성화 상태라면 건너뛰기.
+			// 적이 비활성화 상태라면 건너뛰기
 			if (!enemy->IsActive())
 			{
 				continue;
 			}
 
-			// 충돌 처리.
+			// 충돌 처리
 			if (enemy->Intersect(*bubble))
 			{
-				//inBubble = true;
 				enemy->inBubble = true;
 
 				if (enemy->inBubble)
