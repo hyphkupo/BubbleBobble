@@ -1,5 +1,6 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "C:\\Workspace\\GameProject\\BubbleBobble\\",
   "Documents": [
     {
@@ -8,6 +9,12 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{BAB4B00C-E49E-4501-B9CD-4A63D518EF0F}|Game\\Game.vcxproj|C:\\Workspace\\GameProject\\BubbleBobble\\Game\\Level\\GameLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+=======
+  "WorkspaceRootPath": "C:\\Workspace\\GameProjects\\BubbleBobble\\BubbleBobble\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BAB4B00C-E49E-4501-B9CD-4A63D518EF0F}|Game\\Game.vcxproj|C:\\Workspace\\GameProjects\\BubbleBobble\\BubbleBobble\\Game\\Level\\GameLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+>>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
       "RelativeMoniker": "D:0:0:{BAB4B00C-E49E-4501-B9CD-4A63D518EF0F}|Game\\Game.vcxproj|solutionrelative:Game\\Level\\GameLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
@@ -152,11 +159,19 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "GameLevel.cpp",
+<<<<<<< HEAD
               "DocumentMoniker": "C:\\Workspace\\GameProject\\BubbleBobble\\Game\\Level\\GameLevel.cpp",
               "RelativeDocumentMoniker": "Game\\Level\\GameLevel.cpp",
               "ToolTip": "C:\\Workspace\\GameProject\\BubbleBobble\\Game\\Level\\GameLevel.cpp",
               "RelativeToolTip": "Game\\Level\\GameLevel.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAKAAAAAAAAAA==",
+=======
+              "DocumentMoniker": "C:\\Workspace\\GameProjects\\BubbleBobble\\BubbleBobble\\Game\\Level\\GameLevel.cpp",
+              "RelativeDocumentMoniker": "Game\\Level\\GameLevel.cpp",
+              "ToolTip": "C:\\Workspace\\GameProjects\\BubbleBobble\\BubbleBobble\\Game\\Level\\GameLevel.cpp",
+              "RelativeToolTip": "Game\\Level\\GameLevel.cpp",
+              "ViewState": "AgIAAP8AAAAAAAAAAAAAAAMBAAAaAAAAAAAAAA==",
+>>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-19T14:08:06.957Z",
               "EditorCaption": ""

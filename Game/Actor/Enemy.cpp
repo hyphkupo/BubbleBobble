@@ -26,7 +26,11 @@ Enemy::Enemy(const char* image, int x, int y, int inputPositionY, GameLevel* lev
 	else if (refLevel->stageNumber == 3)
 	{
 		// 적 시작 위치
+<<<<<<< HEAD
 		speed = 6.0f;
+=======
+		speed = 10.0f;
+>>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 		RedrawImage("*", Color::White);
 		yPosition = Random(minX, maxX);
 		position = Vector2(inputPositionY, yPosition);
@@ -77,7 +81,11 @@ void Enemy::MoveEnemy(float deltaTime)
 	if (refLevel->stageNumber == 4)
 	{
 		// 상하 이동
+<<<<<<< HEAD
 		yPosition += speed * factor * deltaTime;
+=======
+		yPosition += 10.0f * factor * deltaTime;
+>>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 		position.y = (int)yPosition;
 
 		// 범위 벗어나면 반대 방향으로 이동

@@ -195,6 +195,7 @@ void Engine::SetCursorType(CursorType cursorType)
 	GetRenderer()->SetCursorType(cursorType);
 }
 
+<<<<<<< HEAD
 void Engine::SetCursorPosition(int x, int y)
 {
 	static HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -207,6 +208,20 @@ void Engine::SetCursorPosition(const Vector2& position)
 	SetCursorPosition(position.x, position.y);
 }
 
+=======
+//void Engine::SetCursorPosition(int x, int y)
+//{
+//	static HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+//	COORD coord = { static_cast<short>(x), static_cast<short>(y) };
+//	SetConsoleCursorPosition(handle, coord);
+//}
+
+//void Engine::SetCursorPosition(const Vector2& position)
+//{
+//	SetCursorPosition(position.x, position.y);
+//}
+//
+>>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 //void Engine::SetCursorPosition(int x, int y)
 //{
 //	SetCursorPosition(x, y);

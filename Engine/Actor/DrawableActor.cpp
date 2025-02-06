@@ -83,6 +83,10 @@ void DrawableActor::RedrawImage(const char* image, Color color)
 	auto length = strlen(image) + 1;
 	strcpy_s(this->image, length, image);
 
+<<<<<<< HEAD
+=======
+	// 너비 설정.
+>>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 	width = (int)strlen(image);
 
 	this->color = color;

@@ -23,7 +23,11 @@ public:
 
 	bool isPlayerDead = false;
 
+<<<<<<< HEAD
 	int stageNumber = 1;
+=======
+	int stageNumber = 3;
+>>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 
 private:
 	// 스테이지 파일 로드 함수
