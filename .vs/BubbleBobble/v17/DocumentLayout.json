@@ -1,21 +1,14 @@
 {
   "Version": 1,
-<<<<<<< HEAD
   "WorkspaceRootPath": "C:\\Workspace\\GameProject\\BubbleBobble\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BAB4B00C-E49E-4501-B9CD-4A63D518EF0F}|Game\\Game.vcxproj|C:\\Workspace\\GameProject\\BubbleBobble\\Game\\Actor\\PlayerBubble.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{BAB4B00C-E49E-4501-B9CD-4A63D518EF0F}|Game\\Game.vcxproj|solutionrelative:Game\\Actor\\PlayerBubble.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{BAB4B00C-E49E-4501-B9CD-4A63D518EF0F}|Game\\Game.vcxproj|C:\\Workspace\\GameProject\\BubbleBobble\\Game\\Level\\GameLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BAB4B00C-E49E-4501-B9CD-4A63D518EF0F}|Game\\Game.vcxproj|solutionrelative:Game\\Level\\GameLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BAB4B00C-E49E-4501-B9CD-4A63D518EF0F}|Game\\Game.vcxproj|C:\\Workspace\\GameProject\\BubbleBobble\\Game\\Level\\GameLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-=======
-  "WorkspaceRootPath": "C:\\Workspace\\GameProjects\\BubbleBobble\\BubbleBobble\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{BAB4B00C-E49E-4501-B9CD-4A63D518EF0F}|Game\\Game.vcxproj|C:\\Workspace\\GameProjects\\BubbleBobble\\BubbleBobble\\Game\\Level\\GameLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
->>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
-      "RelativeMoniker": "D:0:0:{BAB4B00C-E49E-4501-B9CD-4A63D518EF0F}|Game\\Game.vcxproj|solutionrelative:Game\\Level\\GameLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{BAB4B00C-E49E-4501-B9CD-4A63D518EF0F}|Game\\Game.vcxproj|C:\\Workspace\\GameProject\\BubbleBobble\\Game\\Actor\\PlayerBubble.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BAB4B00C-E49E-4501-B9CD-4A63D518EF0F}|Game\\Game.vcxproj|solutionrelative:Game\\Actor\\PlayerBubble.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{67A539CB-D19F-45FF-B3D7-3F812DD53508}|Engine\\Engine.vcxproj|C:\\Workspace\\GameProject\\BubbleBobble\\Engine\\Actor\\DrawableActor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -65,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
@@ -77,8 +70,7 @@
               "RelativeToolTip": "Engine\\Actor\\DrawableActor.cpp",
               "ViewState": "AgIAADwAAAAAAAAAAAAAAFgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-22T15:52:44.614Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-22T15:52:44.614Z"
             },
             {
               "$type": "Document",
@@ -90,8 +82,7 @@
               "RelativeToolTip": "Game\\Actor\\Enemy.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-22T15:44:21.098Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-22T15:44:21.098Z"
             },
             {
               "$type": "Document",
@@ -119,13 +110,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PlayerBubble.cpp",
               "DocumentMoniker": "C:\\Workspace\\GameProject\\BubbleBobble\\Game\\Actor\\PlayerBubble.cpp",
               "RelativeDocumentMoniker": "Game\\Actor\\PlayerBubble.cpp",
               "ToolTip": "C:\\Workspace\\GameProject\\BubbleBobble\\Game\\Actor\\PlayerBubble.cpp",
               "RelativeToolTip": "Game\\Actor\\PlayerBubble.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-22T12:42:42.542Z",
               "EditorCaption": ""
@@ -140,8 +131,7 @@
               "RelativeToolTip": "Game\\Actor\\Enemy.cpp",
               "ViewState": "AgIAAFQAAAAAAAAAAAAAAGUAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-22T12:42:35.196Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-22T12:42:35.196Z"
             },
             {
               "$type": "Document",
@@ -157,21 +147,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "GameLevel.cpp",
-<<<<<<< HEAD
               "DocumentMoniker": "C:\\Workspace\\GameProject\\BubbleBobble\\Game\\Level\\GameLevel.cpp",
               "RelativeDocumentMoniker": "Game\\Level\\GameLevel.cpp",
               "ToolTip": "C:\\Workspace\\GameProject\\BubbleBobble\\Game\\Level\\GameLevel.cpp",
               "RelativeToolTip": "Game\\Level\\GameLevel.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAKAAAAAAAAAA==",
-=======
-              "DocumentMoniker": "C:\\Workspace\\GameProjects\\BubbleBobble\\BubbleBobble\\Game\\Level\\GameLevel.cpp",
-              "RelativeDocumentMoniker": "Game\\Level\\GameLevel.cpp",
-              "ToolTip": "C:\\Workspace\\GameProjects\\BubbleBobble\\BubbleBobble\\Game\\Level\\GameLevel.cpp",
-              "RelativeToolTip": "Game\\Level\\GameLevel.cpp",
-              "ViewState": "AgIAAP8AAAAAAAAAAAAAAAMBAAAaAAAAAAAAAA==",
->>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
+              "ViewState": "AgIAAH0AAAAAAAAAAAAAAIYAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-19T14:08:06.957Z",
               "EditorCaption": ""

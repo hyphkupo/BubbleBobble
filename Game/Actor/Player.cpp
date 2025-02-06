@@ -25,11 +25,7 @@ Player::Player(const char* image, GameLevel* level)
 	else if (refLevel->stageNumber == 3)
 	{
 		// 플레이어 시작 위치
-<<<<<<< HEAD
 		position = Vector2(Engine::Get().ScreenSize().x / 2 - 2, Engine::Get().ScreenSize().y - 12);
-=======
-		position = Vector2(Engine::Get().ScreenSize().x / 2 - 1, Engine::Get().ScreenSize().y - 12);
->>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 	}
 	
 	xPosition = position.x;

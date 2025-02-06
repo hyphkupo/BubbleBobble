@@ -33,7 +33,6 @@ void GameLevel::Update(float deltaTime)
 
 	// 적과 플레이어의 충돌 처리.
 	ProcessCollisionPlayerAndEnemy();
-<<<<<<< HEAD
 
 	char resultBuffer[1024];
 
@@ -42,23 +41,6 @@ void GameLevel::Update(float deltaTime)
 		//Engine::Get().Draw(Vector2(Engine::Get().ScreenSize().x - 10, Engine::Get().ScreenSize().y - 1), "Game Over!");
 		Engine::Get().SetCursorPosition(Vector2(Engine::Get().ScreenSize().x - 10, Engine::Get().ScreenSize().y - 1));
 		Log("Game Over!");
-=======
-}
-
-void GameLevel::Draw()
-{
-	Super::Draw();
-
-	// 점수 출력.
-	char buffer[256];
-	snprintf(buffer, 256, "Score: %d", score);
-	Engine::Get().Draw(Vector2(0, Engine::Get().ScreenSize().y - 1), buffer);
-
-	if (isPlayerDead)
-	{
-		int y = Engine::Get().ScreenSize().y;
-		Engine::Get().Draw(Vector2(Engine::Get().ScreenSize().x - 10, Engine::Get().ScreenSize().y - 1), "Game Over!");
->>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 		//Engine::Get().Present();
 
 		Sleep(3000);
@@ -68,34 +50,20 @@ void GameLevel::Draw()
 
 	else if (CheckGameClear())
 	{
-<<<<<<< HEAD
 		//Engine::Get().Draw(Vector2(Engine::Get().ScreenSize().x - 11, Engine::Get().ScreenSize().y - 1), "Game Clear!");
 		Engine::Get().SetCursorPosition(Vector2(Engine::Get().ScreenSize().x - 11, Engine::Get().ScreenSize().y - 1));
 		Log("Game Clear!");
-=======
-		int y = Engine::Get().ScreenSize().y;
-		Engine::Get().Draw(Vector2(Engine::Get().ScreenSize().x - 11, Engine::Get().ScreenSize().y - 1), "Game Clear!");
->>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 		//Engine::Get().Present();
 
 		Sleep(3000);
 
-<<<<<<< HEAD
-=======
-		//Engine::Get().QuitGame();
-
->>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 		++gameClearNumber;
 		if (gameClearNumber == 3)
 		{
 			Engine::Get().QuitGame();
 			return;
 		}
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 		// map 데이터 삭제
 		for (int ix = 0; ix < map.Size();)
 		{
@@ -114,16 +82,11 @@ void GameLevel::Draw()
 			e1->Destroy();
 			e2->Destroy();
 		}
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 		LoadNextStage();
 	}
 }
 
-<<<<<<< HEAD
 void GameLevel::Draw()
 {
 	Super::Draw();
@@ -134,8 +97,6 @@ void GameLevel::Draw()
 	Engine::Get().Draw(Vector2(0, Engine::Get().ScreenSize().y - 1), buffer);
 }
 
-=======
->>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 bool GameLevel::isGround(const Vector2& position)
 {
 	// 이동하려는 위치에 땅이 있는지 확인
@@ -169,8 +130,7 @@ void GameLevel::LoadNextStage()
 	// 파일 읽기.
 	FILE* file = nullptr;
 
-<<<<<<< HEAD
-	char stageFileNameBuffer[256] = "./Assets/Maps/Stage";
+	char stageFileNameBuffer[256] = "../Assets/Maps/Stage";
 	char stageCharNumber[256];
 	_itoa_s(stageNumber, stageCharNumber, 10);
 	strcat_s(stageFileNameBuffer, 256, stageCharNumber);
@@ -178,16 +138,6 @@ void GameLevel::LoadNextStage()
 
 	//fopen_s(&file, "../Assets/Maps/Stage1.txt", "rb");
 	fopen_s(&file, stageFileNameBuffer, "rb");
-=======
-	char stageFileName[26] = "../Assets/Maps/Stage";
-	char stageCharNumber[2];
-	_itoa_s(stageNumber, stageCharNumber, 10);
-	strcat_s(stageFileName, 26, stageCharNumber);
-	strcat_s(stageFileName, 26, ".txt");	
-
-	//fopen_s(&file, "../Assets/Maps/Stage1.txt", "rb");
-	fopen_s(&file, stageFileName, "rb");
->>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 
 	// 파일 처리.
 	if (file == nullptr)
@@ -363,11 +313,7 @@ void GameLevel::ProcessCollisionPlayerBubbleAndEnemy()
 
 				if (enemy->inBubble)
 				{
-<<<<<<< HEAD
 					if (stageNumber == 4)
-=======
-					if (stageNumber == 3)
->>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 					{
 						enemy->RedrawImage("&", Color::Yellow);
 					}
@@ -442,11 +388,7 @@ void GameLevel::ProcessCollisionPlayerAndEnemy()
 		// 적이 플레이어에게 버블을 맞은 후 플레이어와 부딪혔다면 점수 추가, 적 제거
 		if (player->Intersect(*enemy) && enemy->inBubble)
 		{
-<<<<<<< HEAD
 			if (stageNumber == 4)
-=======
-			if (stageNumber == 3)
->>>>>>> 224481ddc79e9a710e9178c74fcd2f5d2fa3e783
 			{
 				score += 300;
 			}
