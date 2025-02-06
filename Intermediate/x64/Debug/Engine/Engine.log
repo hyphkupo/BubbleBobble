@@ -10,7 +10,7 @@
   C:\Workspace\GameProject\BubbleBobble\Engine\PreCompiledHeader\PreCompiledHeader.h
   C:\Workspace\GameProject\BubbleBobble\Engine\Render\ScreenBuffer.h
   11개 파일이 복사되었습니다.
-  Level.cpp
+  DrawableActor.cpp
   Engine.vcxproj -> C:\Workspace\GameProject\BubbleBobble\Bin\x64\Debug\Engine\Engine.dll
   C:\Workspace\GameProject\BubbleBobble\Bin\x64\Debug\Engine\Engine.dll
   1개 파일이 복사되었습니다.

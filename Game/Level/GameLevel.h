@@ -3,9 +3,9 @@
 #include <Level/Level.h>
 #include <Math/Vector2.h>
 
-// 소코반 게임 레벨.
 class DrawableActor;
 class Player;
+class Enemy;
 class GameLevel : public Level
 {
 	RTTI_DECLARATIONS(GameLevel, Level)
@@ -13,46 +13,46 @@ class GameLevel : public Level
 public:
 	GameLevel();
 
-	// 업데이트 함수.
 	virtual void Update(float deltaTime) override;
 	virtual void Draw() override;
 
-	// 플레이어가 이동이 가능한 지 확인하는 함수.
+	bool isGround(const Vector2& position);
+
+	// 플레이어가 이동이 가능한 지 확인하는 함수
 	bool CanPlayerMove(const Vector2& position);
-
-	bool IsOnGround(const Vector2& position);
-	bool IsOnWall = true;
-	bool IsInAir = false;
-
-	List<int> GroundPosition;
 
 	bool isPlayerDead = false;
 
-private:
-	// 플레이어 탄약과 적의 충돌 처리.
-	void ProcessCollisionPlayerBulletAndEnemy();
+	int stageNumber = 1;
 
-	// 적과 플레이어의 충돌 처리.
+private:
+	// 스테이지 파일 로드 함수
+	void LoadNextStage();
+
+	// 플레이어 버블과 적의 충돌 처리
+	void ProcessCollisionPlayerBubbleAndEnemy();
+
+	// 적과 플레이어의 충돌 처리
 	void ProcessCollisionPlayerAndEnemy();
 
-	// 적 생성 함수
-	void SpawnEnemy(float deltaTime);
-
-	// 박스를 옮긴 뒤 게임을 클리어했는지 확인하는 함수.
+	// 게임을 클리어했는지 확인하는 함수
 	bool CheckGameClear();
 
 private:
-	// 점수.
-	int score = 0;
-
-	// 벽/땅 액터 배열.
+	// 벽/땅 액터 배열
 	List<DrawableActor*> map;
 
-	// 플레이어 액터.
+	// 점수
+	int score = 0;
+
+	// 플레이어 액터
 	Player* player = nullptr;
 
-	// 게임 클리어 변수.
+	// 게임 클리어 변수
 	bool isGameClear = false;
+	int gameClearNumber = 0;
 
-	Vector2 playerDeadPosition;
+	Player* p = nullptr;
+	Enemy* e1 = nullptr;
+	Enemy* e2 = nullptr;
 };

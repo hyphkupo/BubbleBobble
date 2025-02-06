@@ -35,8 +35,8 @@ public:
 
 	// 화면 좌표 관련 함수.
 	void SetCursorType(CursorType cursorType);
-	//void SetCursorPosition(const Vector2& position);
-	//void SetCursorPosition(int x, int y);
+	void SetCursorPosition(const Vector2& position);
+	void SetCursorPosition(int x, int y);
 
 	void Draw(const Vector2& position, const char* image, Color color = Color::White);
 
@@ -57,11 +57,12 @@ public:
 	// 싱글톤 객체 접근 함수.
 	static Engine& Get();
 
+	void Clear();						// 화면 지우기.
+
 protected:
 	void ProcessInput();				// 입력 처리.
 	void Update(float deltaTime);		// Tick();
 
-	void Clear();						// 화면 지우기.
 	void Draw();						// Render();
 	void Present();
 

@@ -6,9 +6,9 @@ Timer::Timer(float setTime)
 {
 }
 
-void Timer::Update(float delatTime)
+void Timer::Update(float delayTime)
 {
-	elapsedTime += delatTime;
+	elapsedTime += delayTime;
 }
 
 void Timer::Reset()

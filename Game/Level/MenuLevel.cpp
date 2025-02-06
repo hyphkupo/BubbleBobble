@@ -4,6 +4,7 @@
 MenuLevel::MenuLevel()
 {
 	menuItems.PushBack(new MenuItem("Resume Game", []() { Game::Get().ToggleMenu(); }));
+	//menuItems.PushBack(new MenuItem("Next Stage", []() { Game::Get().ToggleMenu(); }));
 	menuItems.PushBack(new MenuItem("Quit Game", []() { Game::Get().QuitGame(); }));
 	length = menuItems.Size();
 }
@@ -20,7 +21,8 @@ void MenuLevel::Update(float deltaTime)
 {
 	if (Game::Get().GetKeyDown(VK_ESCAPE))
 	{
-		Game::Get().ToggleMenu();
+		//Game::Get().ToggleMenu();
+		Engine::Get().QuitGame();
 	}
 
 	if (Game::Get().GetKeyDown(VK_UP))

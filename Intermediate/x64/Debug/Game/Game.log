@@ -1,11 +1,9 @@
-﻿  ..\Assets\Maps\Map.txt
-  ..\Assets\Maps\Stage1.txt
+﻿  ..\Assets\Maps\Stage1.txt
   ..\Assets\Maps\Stage2.txt
   ..\Assets\Maps\Stage3.txt
-  4개 파일이 복사되었습니다.
-  Player.cpp
-  PlayerBubble.cpp
-  코드를 생성하고 있습니다...
+  3개 파일이 복사되었습니다.
+  GameLevel.cpp
+C:\Workspace\GameProject\BubbleBobble\Game\Level\GameLevel.cpp(37,7): warning C4101: 'resultBuffer' :참조되지 않은 지역 변수입니다.
   Game.vcxproj -> C:\Workspace\GameProject\BubbleBobble\Bin\x64\Debug\Game\Game.exe
   C:\Workspace\GameProject\BubbleBobble\\Lib\Engine.dll
   1개 파일이 복사되었습니다.

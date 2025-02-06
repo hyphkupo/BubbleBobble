@@ -43,7 +43,7 @@ Game::~Game()
 		delete mainLevel;
 		mainLevel = nullptr;
 	}
-
+	
 	// 메뉴 레벨 삭제.
 	delete menuLevel;
 	menuLevel = nullptr;

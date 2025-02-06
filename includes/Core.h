@@ -13,7 +13,12 @@ enum class Color : unsigned short
 	Red = FOREGROUND_RED,
 	Green = FOREGROUND_GREEN,
 	Blue = FOREGROUND_BLUE,
+	Intensity = FOREGROUND_INTENSITY,
+	Yellow = Red + Green + Intensity,
+	Purple = Red + Blue + Intensity,
 	White = Red + Green + Blue,
+	MoreGreen = Green + Intensity,
+	MoreBlue = Blue + Intensity,
 };
 
 // 커서의 종류를 설정할 때 사용할 열거형.
@@ -216,3 +221,8 @@ inline void CheckMemoryLeak()
 #define VK_RCONTROL       0xA3
 #define VK_LMENU          0xA4
 #define VK_RMENU          0xA5
+
+#define VK_W		      0x57
+#define VK_A		      0x41
+#define VK_S		      0x53
+#define VK_D		      0x44

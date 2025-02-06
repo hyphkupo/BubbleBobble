@@ -1,23 +1,127 @@
 #include "GameLevel.h"
 #include "Engine/Engine.h"
-#include "Actor/Player.h"
+#include "Level/Level.h"
+
 #include "Actor/Wall.h"
 #include "Actor/Ground.h"
 #include "Actor/Air.h"
 
+#include "Actor/Player.h"
 #include "Actor/Enemy.h"
+#include "Actor/PlayerBubble.h"
 
 #include <Windows.h>
 #include "Game/Game.h"
 
-//struct enemyType
-//{
-//
-//};
-
-// 적 캐릭터 종류.
-
 GameLevel::GameLevel()
+{
+	LoadNextStage();
+}
+
+void GameLevel::Update(float deltaTime)
+{
+	Super::Update(deltaTime);
+
+	// 예외 처리.
+	if (deltaTime > 1.0f)
+	{
+		return;
+	}
+
+	// 플레이어 버블과 적의 충돌 처리.
+	ProcessCollisionPlayerBubbleAndEnemy();
+
+	// 적과 플레이어의 충돌 처리.
+	ProcessCollisionPlayerAndEnemy();
+
+	char resultBuffer[1024];
+
+	if (isPlayerDead)
+	{
+		//Engine::Get().Draw(Vector2(Engine::Get().ScreenSize().x - 10, Engine::Get().ScreenSize().y - 1), "Game Over!");
+		Engine::Get().SetCursorPosition(Vector2(Engine::Get().ScreenSize().x - 10, Engine::Get().ScreenSize().y - 1));
+		Log("Game Over!");
+		//Engine::Get().Present();
+
+		Sleep(3000);
+
+		Engine::Get().QuitGame();
+	}
+
+	else if (CheckGameClear())
+	{
+		//Engine::Get().Draw(Vector2(Engine::Get().ScreenSize().x - 11, Engine::Get().ScreenSize().y - 1), "Game Clear!");
+		Engine::Get().SetCursorPosition(Vector2(Engine::Get().ScreenSize().x - 11, Engine::Get().ScreenSize().y - 1));
+		Log("Game Clear!");
+		//Engine::Get().Present();
+
+		Sleep(3000);
+
+		++gameClearNumber;
+		if (gameClearNumber == 3)
+		{
+			Engine::Get().QuitGame();
+			return;
+		}
+
+		// map 데이터 삭제
+		for (int ix = 0; ix < map.Size();)
+		{
+			map.Erase(ix);
+		}
+
+		if (stageNumber == 3)
+		{
+			p->Destroy();
+			e1->Destroy();
+		}
+
+		else
+		{
+			p->Destroy();
+			e1->Destroy();
+			e2->Destroy();
+		}
+
+		LoadNextStage();
+	}
+}
+
+void GameLevel::Draw()
+{
+	Super::Draw();
+
+	// 점수 출력.
+	char buffer[256];
+	snprintf(buffer, 256, "Score: %d", score);
+	Engine::Get().Draw(Vector2(0, Engine::Get().ScreenSize().y - 1), buffer);
+}
+
+bool GameLevel::isGround(const Vector2& position)
+{
+	// 이동하려는 위치에 땅이 있는지 확인
+	DrawableActor* searchedActor = nullptr;
+
+	// 이동하려는 위치의 액터 찾기
+	for (auto* actor : map)
+	{
+		if (actor->Position() == position)
+		{
+			searchedActor = actor;
+			break;
+		}
+	}
+
+	// 검색한 액터가 땅 액터인지 확인
+	if (searchedActor->As<Ground>())
+	{
+		return true;
+	}
+
+	return false;
+}
+
+void GameLevel::LoadNextStage()
 {
 	// 커서 감추기.
 	Engine::Get().SetCursorType(CursorType::NoCursor);
@@ -25,7 +129,15 @@ GameLevel::GameLevel()
 	// 맵 파일 불러와 레벨 로드.
 	// 파일 읽기.
 	FILE* file = nullptr;
-	fopen_s(&file, "../Assets/Maps/Map.txt", "rb");
+
+	char stageFileNameBuffer[256] = "./Assets/Maps/Stage";
+	char stageCharNumber[256];
+	_itoa_s(stageNumber, stageCharNumber, 10);
+	strcat_s(stageFileNameBuffer, 256, stageCharNumber);
+	strcat_s(stageFileNameBuffer, 256, ".txt");
+
+	//fopen_s(&file, "../Assets/Maps/Stage1.txt", "rb");
+	fopen_s(&file, stageFileNameBuffer, "rb");
 
 	// 파일 처리.
 	if (file == nullptr)
@@ -105,67 +217,127 @@ GameLevel::GameLevel()
 		++xPosition;
 	}
 
-	AddActor(new Player("o", this));
-	AddActor(new Enemy("x"));
+	if (stageNumber == 1)
+	{
+		p = new Player("p", this);
+		e1 = new Enemy("x", 9, 22, 4, this);
+		e2 = new Enemy("x", 9, 22, 7, this);
 
-	// 버퍼 삭제.
+		AddActor(p);
+		AddActor(e1);
+		AddActor(e2);
+	}
+	
+	else if (stageNumber == 2)
+	{
+		p = new Player("p", this);
+		e1 = new Enemy("x", 10, 14, 3, this);
+		e2 = new Enemy("x", 17, 21, 3, this);
+
+		AddActor(p);
+		AddActor(e1);
+		AddActor(e2);
+	}
+
+	else if (stageNumber == 3)
+	{
+		p = new Player("p", this);
+		e1 = new Enemy("b", 1, 9, 16, this);
+
+		AddActor(p);
+		AddActor(e1);
+	}
+
 	delete[] buffer;
 
 	fclose(file);
+
+	++stageNumber;
 }
 
-void GameLevel::Update(float deltaTime)
+// 플레이어의 버블과 적 충돌 처리
+void GameLevel::ProcessCollisionPlayerBubbleAndEnemy()
 {
-	Super::Update(deltaTime);
+	// 버블 및 적 캐릭터 배열 선언
+	List<PlayerBubble*> bubbles;
+	List<Enemy*> enemies;
+	Player* player = nullptr;
 
-	// 예외 처리.
-	if (deltaTime > 1.0f)
+	// 레벨에 배치된 액터를 순회하면서 리스트 채우기
+	for (Actor* actor : actors)
+	{
+		// 플레이어가 설정되지 않았으면 플레이어로 형변환
+		if (!player)
+		{
+			player = actor->As<Player>();
+			continue;
+		}
+
+		// 형변환 후 확인해서 리스트 채우기
+		PlayerBubble* bubble = actor->As<PlayerBubble>();
+		if (bubble)
+		{
+			bubbles.PushBack(bubble);
+			continue;
+		}
+
+		// 적으로 형변환 후 확인해서 리스트 채우기
+		Enemy* enemy = actor->As<Enemy>();
+		if (enemy)
+		{
+			enemies.PushBack(enemy);
+		}
+	}
+
+	// 예외 처리
+	if (bubbles.Size() == 0 || enemies.Size() == 0)
 	{
 		return;
 	}
 
-	// ESC 키로 종료.
-	//if (Engine::Get().GetKeyDown(VK_ESCAPE))
-	//{
-	//	Game::Get().ToggleMenu();
-	//}
-
-	// Wall 또는 Ground가 아니면 IsInAir = true
-
-	//SpawnEnemy(deltaTime);
-
-	// 플레이어 탄약과 적의 충돌 처리.
-	ProcessCollisionPlayerBulletAndEnemy();
-
-	// 적과 플레이어의 충돌 처리.
-	ProcessCollisionPlayerAndEnemy();
-}
-
-void GameLevel::Draw()
-{
-	Super::Draw();
-
-	if (isPlayerDead)
+	// 두 배열을 순회하면서 충돌 처리
+	for (PlayerBubble* bubble : bubbles)
 	{
-		int y = Engine::Get().ScreenSize().y;
-		Engine::Get().Draw(Vector2(Engine::Get().ScreenSize().x - 10, Engine::Get().ScreenSize().y - 1), "Game Over!");
-		//Engine::Get().Present();
+		for (Enemy* enemy : enemies)
+		{
+			// 적이 비활성화 상태라면 건너뛰기
+			if (!enemy->IsActive())
+			{
+				continue;
+			}
 
-		Sleep(2000);
+			// 충돌 처리
+			if (enemy->Intersect(*bubble))
+			{
+				enemy->inBubble = true;
 
-		Engine::Get().QuitGame();
+				if (enemy->inBubble)
+				{
+					if (stageNumber == 4)
+					{
+						enemy->RedrawImage("&", Color::Yellow);
+					}
+
+					else
+					{
+						enemy->RedrawImage("@", Color::Yellow);
+					}
+				}
+
+				// 맵 범위를 벗어나면 적 제거
+				if (enemy->Position().y < 1)
+				{
+					enemy->Destroy();
+				}
+
+				// 버블 제거
+				bubble->Destroy();
+			}
+		}
 	}
-
-	// 점수 출력.
-	char buffer[256];
-	snprintf(buffer, 256, "Score: %d", score);
-	Engine::Get().Draw(Vector2(0, Engine::Get().ScreenSize().y - 1), buffer);
 }
 
-void GameLevel::ProcessCollisionPlayerBulletAndEnemy()
-{
-}
-
+// 플레이어와 적 충돌 처리
 void GameLevel::ProcessCollisionPlayerAndEnemy()
 {
 	// 탄약 및 적 캐릭터 배열 선언.
@@ -205,19 +377,30 @@ void GameLevel::ProcessCollisionPlayerAndEnemy()
 			continue;
 		}
 
-		// 적과 탄약이 충돌했는지 확인.
-		if (player->Intersect(*enemy))
+		// 플레이어와 적이 충돌했는지 확인
+		if (player->Intersect(*enemy) && !enemy->inBubble)
 		{
 			isPlayerDead = true;
-			playerDeadPosition = Vector2(player->Position().x + player->Width() / 2, player->Position().y);
+			//playerDeadPosition = Vector2(player->Position().x + player->Width() / 2, player->Position().y);
 			player->Destroy();
 		}
-	}
-}
 
-void GameLevel::SpawnEnemy(float deltaTime)
-{
-	AddActor(new Enemy("x"));
+		// 적이 플레이어에게 버블을 맞은 후 플레이어와 부딪혔다면 점수 추가, 적 제거
+		if (player->Intersect(*enemy) && enemy->inBubble)
+		{
+			if (stageNumber == 4)
+			{
+				score += 300;
+			}
+
+			else
+			{
+				score += 100;
+			}
+
+			enemy->Destroy();
+		}
+	}
 }
 
 bool GameLevel::CheckGameClear()
@@ -271,27 +454,4 @@ bool GameLevel::CanPlayerMove(const Vector2& position)
 	}
 
 	return true;
-}
-
-bool GameLevel::IsOnGround(const Vector2& position)
-{
-	// 이동하려는 위치에 벽이 있는지 확인.
-	Actor* searchedActor = nullptr;
-
-	// 먼저 이동하려는 위치의 액터 찾기.
-	for (auto* actor : actors)
-	{
-		if (actor->Position() == position)
-		{
-			searchedActor = actor;
-			break;
-		}
-	}
-
-	if (searchedActor->As<Ground>())
-	{
-		return true;
-	}
-
-	return false;
 }

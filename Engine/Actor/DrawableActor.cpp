@@ -76,3 +76,14 @@ bool DrawableActor::Intersect(const DrawableActor& other)
 	// 위의 두 경우가 아니라면 (x좌표는 서로 겹침), y위치 비교.
 	return position.y == other.position.y;
 }
+
+// DrawableActor의 image를 바꿔주는 함수 (ex. 버블과 충돌 시의 enemy "a" -> "@")
+void DrawableActor::RedrawImage(const char* image, Color color)
+{
+	auto length = strlen(image) + 1;
+	strcpy_s(this->image, length, image);
+
+	width = (int)strlen(image);
+
+	this->color = color;
+}

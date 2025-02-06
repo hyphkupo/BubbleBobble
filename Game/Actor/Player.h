@@ -12,11 +12,13 @@ public:
 
 	virtual void Update(float deltaTime) override;
 
-	//void SetGravity();
+	// 플레이어의 버블 발사 방향 결정 변수
+	int flag = 0;
 
 private:
+	float xPosition = 0.0f;
+	float yPosition = 0.0f;
 	float speed = 5.0f;
-	//float yPosition = 0.0f;
 
 	GameLevel* refLevel = nullptr;
 };

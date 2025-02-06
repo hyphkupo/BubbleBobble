@@ -10,6 +10,5 @@ int main()
 
 	Game game;
 	game.LoadLevel(new GameLevel);
-	
 	game.Run();
 }
